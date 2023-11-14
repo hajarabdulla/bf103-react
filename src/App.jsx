@@ -1,39 +1,38 @@
-import React from "react";
-import Header from "./components/Header";
-import Cards from "./components/Cards";
-import Footer from "./components/Footer";
-
-import "./App.css";
-import User from "./components/User";
+import React, { useState } from "react";
+import Modal from "./Modal";
 
 const App = () => {
-  // const myDesign = {
-  //   color: "aqua",
-  //   backgroundColor: "green",
-  // };
+  const [tasks, setTasks] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
-  const userData = [
-    {
-      name: "Hajar",
-      surname: "Abdullayeva",
-    },
-    {
-      name: "Nigar",
-      surname: "Abdullayeva",
-    },
-  ];
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const addTask = (e) => {
+    e.preventDefault();
+    setTasks([...tasks, { id: Date.now(), title: inputValue }]);
+    setInputValue("");
+  };
 
   return (
-    <>
-      <Header />
-      <main>
-        <Cards />
-        <User userData={userData} />
-      </main>
-      <Footer />
-      {/* <h1 style={{ color: "red", backgroundColor: "yellow" }}>Salam</h1>
-      <div style={myDesign}>HEllo world</div> */}
-    </>
+    <div>
+      <form onSubmit={addTask}>
+        <input type="text" onInput={handleChange} value={inputValue} />
+        <button>Add</button>
+      </form>
+
+      <ul>
+        {tasks.map((task) => (
+          <li>{task.title}</li>
+        ))}
+      </ul>
+
+      <button onClick={() => setOpenModal(true)}>Show Modal</button>
+
+      {openModal && <Modal setOpenModal={setOpenModal} />}
+    </div>
   );
 };
 
