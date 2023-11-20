@@ -1,39 +1,38 @@
-import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-
-const userData = [
-  {
-    id: uuidv4(),
-    name: "Hajar",
-    university: "asoiu",
-  },
-  {
-    id: uuidv4(),
-    name: "Vafa",
-    university: "bsu",
-  },
-];
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Cards from "./Cards";
+import Loading from "./Loading";
+import CategoryTable from "./CategoryTable";
 
 const App = () => {
-  const [data, setData] = useState(userData);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleDelete = (id) => {
-    console.log(id);
-    const newData = data.filter((item) => id != item.id);
-    setData(newData);
+  const getData = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get(
+        "https://northwind.vercel.app/api/categories"
+      );
+      setCategories(res.data);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <ul>
-      {data.map((user, index) => (
-        <li key={user.id}>
-          <h3>{user.id}</h3>
-          <p>{user.name}</p>
-          <p>{user.university}</p>
-          <button onClick={() => handleDelete(user.id)}>Delete</button>
-        </li>
-      ))}
-    </ul>
+    <>
+      {error && <h1>Error</h1>}
+      {loading ? <Loading /> : <CategoryTable categories={categories} />}
+      {/* <Cards categories={categories} /> */}
+    </>
   );
 };
 
