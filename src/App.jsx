@@ -1,52 +1,32 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import Header from "./Header";
-import AddForm from "./AddForm";
-import Todos from "./Todos";
+import React from "react";
+import useFetch from "./hooks/useFetch";
+import useButton from "./hooks/useButton";
 
 const App = () => {
-  console.log("APP rendered");
-
-  const [inputValue, setInputValue] = useState("");
-  const [todos, setTodos] = useState([]);
-  const [counter, setCounter] = useState([]);
-  const [searchValue, setSearchValue] = useState("");
-
-  const handleChange = useCallback((e) => {
-    setInputValue(e.target.value);
-  }, []);
-
-  const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-
-      setTodos([...todos, { title: inputValue }]);
-    },
-    [inputValue]
+  const [loading, error, response] = useFetch(
+    "https://northwind.vercel.app/api/categories"
   );
 
-  const filteredData = useMemo(() => {
-    return todos.filter((t) => t.title.toLowerCase().includes(searchValue));
-  }, [todos, searchValue]);
+  //   const result = useFetch("https://northwind.vercel.app/api/categories");
+  //   console.log(result);
+
+  const [state, show, hide, toggle] = useButton();
 
   return (
     <div>
-      <Header />
-      {counter}
-      <button onClick={() => setCounter(counter + 1)}>Increase</button>
+      <button onClick={show}>Show</button>
+      <button onClick={hide}>Hide</button>
+      <button onClick={toggle}>Toggle</button>
 
-      <AddForm
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        inputValue={inputValue}
-      />
+      {state && <h1>Hello</h1>}
 
-      <input
-        type="text"
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
-      />
-
-      <Todos todos={filteredData} />
+      {response.map((r) => (
+        <div key={r.id}>
+          <h1>{r.id}</h1>
+          <p>{r.name}</p>
+          <p>{r.description}</p>
+        </div>
+      ))}
     </div>
   );
 };
