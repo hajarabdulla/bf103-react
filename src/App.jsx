@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Header from "./Header";
 import AddForm from "./AddForm";
 import Todos from "./Todos";
@@ -9,6 +9,7 @@ const App = () => {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
   const [counter, setCounter] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
   const handleChange = useCallback((e) => {
     setInputValue(e.target.value);
@@ -23,6 +24,10 @@ const App = () => {
     [inputValue]
   );
 
+  const filteredData = useMemo(() => {
+    return todos.filter((t) => t.title.toLowerCase().includes(searchValue));
+  }, [todos, searchValue]);
+
   return (
     <div>
       <Header />
@@ -35,7 +40,13 @@ const App = () => {
         inputValue={inputValue}
       />
 
-      <Todos todos={todos} />
+      <input
+        type="text"
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+      />
+
+      <Todos todos={filteredData} />
     </div>
   );
 };
