@@ -16,3 +16,13 @@ code {
   color: red !important;
   font-weight: bold;
 }
+
+body.light {
+  background-color: white;
+  color: black;
+}
+
+body.dark {
+  background-color: black;
+  color: white;
+}
