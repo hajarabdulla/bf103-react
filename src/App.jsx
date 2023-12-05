@@ -1,20 +1,22 @@
 import React from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import About from "./components/About";
-import Users from "./components/Users";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  descreaseCounter,
+  increaseCounter,
+} from "./redux/features/counterSlice";
+import Form from "./components/Form";
 
 const App = () => {
+  const dispatch = useDispatch();
+  const counter = useSelector((state) => state.counter);
+
   return (
     <div>
-      <Header />
-      App
-      <About>
-        Salam
-        <div>sdhfk</div>
-      </About>
-      <Users />
-      <Footer />
+      <h1>counter: {counter} </h1>
+      <button onClick={() => dispatch(increaseCounter())}>Increase</button>
+      <button onClick={() => dispatch(descreaseCounter())}>Descrease</button>
+
+      <Form />
     </div>
   );
 };
