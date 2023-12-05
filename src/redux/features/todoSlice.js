@@ -24,7 +24,7 @@ export const todoSlice = createSlice({
 
       return completedTask;
     },
-    removeAll: () => {
+    removeAll: (state) => {
       state = [];
     },
   },
