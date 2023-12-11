@@ -11,11 +11,11 @@ export const todoSlice = createSlice({
       return [...state, payload];
     },
     deleteTodo: (state, { payload }) => {
-      return state.filter((item) => item.id != payload);
+      return state.filter((item) => item.id !== payload);
     },
     completeTodo: (state, { payload }) => {
       const completedTask = state.map((item) => {
-        if (item?.id == payload) {
+        if (item?.id === payload) {
           return { ...item, isComplete: !item?.isComplete };
         } else {
           return item;
