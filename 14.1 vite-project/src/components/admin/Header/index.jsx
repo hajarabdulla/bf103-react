@@ -8,6 +8,11 @@ const Header = () => {
       <nav>
         <ul className="flex items-center gap-10">
           <li>
+            <NavLink to="/" onClick={(isActive) => (isActive ? ".active" : "")}>
+              Web
+            </NavLink>
+          </li>
+          <li>
             <NavLink
               to="/admin"
               onClick={(isActive) => (isActive ? ".active" : "")}

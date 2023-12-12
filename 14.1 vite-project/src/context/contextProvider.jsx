@@ -8,6 +8,7 @@ const ContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
+  const [basket, setBasket] = useState([]);
 
   const getProducts = async () => {
     const res = await axios.get(`${BASE_URL}/products`);
@@ -24,10 +25,16 @@ const ContextProvider = ({ children }) => {
     setSuppliers(res?.data);
   };
 
+  const getBasket = async () => {
+    const res = await axios.get(`http://localhost:8080/basket`);
+    setBasket(res?.data);
+  };
+
   useEffect(() => {
     getProducts();
     getCategories();
     getSuppliers();
+    getBasket();
   }, []);
 
   const values = {
@@ -37,6 +44,8 @@ const ContextProvider = ({ children }) => {
     setCategories,
     suppliers,
     setSuppliers,
+    basket,
+    setBasket,
   };
 
   return (

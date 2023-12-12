@@ -1,0 +1,71 @@
+{
+  "basket": [
+    {
+      "id": 0.874365888076464,
+      "data": {
+        "id": 4,
+        "supplierId": 2,
+        "categoryId": 3,
+        "quantityPerUnit": "48 - 6 oz jars",
+        "unitPrice": 22,
+        "unitsInStock": 53,
+        "unitsOnOrder": 0,
+        "reorderLevel": 0,
+        "discontinued": true,
+        "name": "Chef Anton's Cajun Seasoning",
+        "supplier": {
+          "id": 2,
+          "companyName": "New Orleans Cajun Delights",
+          "contactName": "Shelley Burke",
+          "contactTitle": "Order Administrator",
+          "address": {
+            "street": "P.O. Box 78934",
+            "city": "New Orleans",
+            "region": "LA",
+            "postalCode": 70117,
+            "country": "USA",
+            "phone": "(100) 555-4822"
+          }
+        },
+        "category": {
+          "id": 3,
+          "description": "Desserts candies and sweet breads",
+          "name": "Confections"
+        }
+      },
+      "count": 4
+    },
+    {
+      "id": 0.618629096703557,
+      "data": {
+        "id": 5,
+        "supplierId": 2,
+        "categoryId": 2,
+        "quantityPerUnit": "36 boxes",
+        "unitPrice": 21.35,
+        "unitsInStock": 0,
+        "unitsOnOrder": 0,
+        "reorderLevel": 0,
+        "discontinued": true,
+        "name": "Chef Anton's Gumbo Mix"
+      },
+      "count": 1
+    },
+    {
+      "id": 0.8428710666757726,
+      "data": {
+        "id": 9,
+        "supplierId": 4,
+        "categoryId": 6,
+        "quantityPerUnit": "18 - 500 g pkgs.",
+        "unitPrice": 97,
+        "unitsInStock": 29,
+        "unitsOnOrder": 0,
+        "reorderLevel": 0,
+        "discontinued": true,
+        "name": "Mishi Kobe Niku"
+      },
+      "count": 1
+    }
+  ]
+}

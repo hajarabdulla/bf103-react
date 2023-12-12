@@ -2,6 +2,7 @@ import Root from "../pages/client/Root";
 import Home from "../pages/client/Home";
 import About from "../pages/client/About";
 import Contact from "../pages/client/Contact";
+import Basket from "../pages/client/Basket";
 import AdminRoot from "../pages/admin/AdminRoot";
 import Dashboard from "../pages/admin/Dashboard";
 import Product from "../pages/admin/Product";
@@ -24,6 +25,10 @@ export const ROUTES = [
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "basket",
+        element: <Basket />,
       },
     ],
   },
