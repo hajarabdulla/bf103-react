@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   descreaseCounter,
@@ -6,17 +6,26 @@ import {
 } from "./redux/features/counterSlice";
 import Form from "./components/Form";
 import { deleteCategory, getCategory } from "./redux/features/categorySlice";
+import axios from "axios";
 
 const App = () => {
   const dispatch = useDispatch();
   const counter = useSelector((state) => state.counter);
 
   const category = useSelector((state) => state.category);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     dispatch(getCategory());
+
+    const getUsers = async () => {
+      const res = await axios.get("http://localhost:8080/users");
+      setData(res.data);
+    };
+    getUsers();
   }, []);
 
+  console.log(data);
   return (
     <div>
       {/* <Helmet>
