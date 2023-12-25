@@ -7,32 +7,32 @@ import {
 import Form from "./components/Form";
 import { deleteCategory, getCategory } from "./redux/features/categorySlice";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const App = () => {
   const dispatch = useDispatch();
   const counter = useSelector((state) => state.counter);
 
   const category = useSelector((state) => state.category);
-  const [data, setData] = useState([]);
+  //   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    dispatch(getCategory());
+  //   useEffect(() => {
+  //     dispatch(getCategory());
 
-    const getUsers = async () => {
-      const res = await axios.get("http://localhost:8080/users");
-      setData(res.data);
-    };
-    getUsers();
-  }, []);
+  //     const getUsers = async () => {
+  //       const res = await axios.get("http://localhost:8080/users");
+  //       setData(res.data);
+  //     };
+  //     getUsers();
+  //   }, []);
 
-  console.log(data);
   return (
     <div>
-      {/* <Helmet>
+      <Helmet>
         <meta charSet="utf-8" />
-        <title>Home</title>
-        <link rel="canonical" href="http://mysite.com/example" />
-      </Helmet> */}
+        <title>My Title</title>
+        <link rel="canonical" href="http://localhost:3000/" />
+      </Helmet>
 
       <h1>counter: {counter} </h1>
       <button onClick={() => dispatch(increaseCounter())}>Increase</button>
@@ -40,7 +40,7 @@ const App = () => {
 
       <Form />
 
-      {category?.loading ? (
+      {/* {category?.loading ? (
         <h1>Loading...</h1>
       ) : (
         category?.data?.map((item) => {
@@ -55,7 +55,7 @@ const App = () => {
             </div>
           );
         })
-      )}
+      )} */}
     </div>
   );
 };
