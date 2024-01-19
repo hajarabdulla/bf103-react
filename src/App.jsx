@@ -14,17 +14,17 @@ const App = () => {
   const counter = useSelector((state) => state.counter);
 
   const category = useSelector((state) => state.category);
-  //   const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
 
-  //   useEffect(() => {
-  //     dispatch(getCategory());
+  useEffect(() => {
+    dispatch(getCategory());
 
-  //     const getUsers = async () => {
-  //       const res = await axios.get("http://localhost:8080/users");
-  //       setData(res.data);
-  //     };
-  //     getUsers();
-  //   }, []);
+    const getUsers = async () => {
+      const res = await axios.get("http://localhost:8080/users");
+      setData(res.data);
+    };
+    getUsers();
+  }, []);
 
   return (
     <div>
